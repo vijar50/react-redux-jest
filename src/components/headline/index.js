@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Headline extends Component {
   constructor(props) {
@@ -19,5 +20,22 @@ class Headline extends Component {
     );
   }
 }
+
+//Prop-Types - document intended property types of properties
+//passed to components. React will check against definitions.
+Headline.propTypes = {
+  //These two props should be strings.
+  header: PropTypes.string,
+  desc: PropTypes.string,
+  tempArr: PropTypes.arrayOf(
+    PropTypes.shape({
+      fName: PropTypes.string,
+      lName: PropTypes.string,
+      email: PropTypes.string,
+      age: PropTypes.number,
+      onlineStatus: PropTypes.bool
+    })
+  )
+};
 
 export default Headline;

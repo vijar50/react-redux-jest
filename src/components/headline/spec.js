@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Headline from "./index";
-import { findByTestAttr } from "../../../Utils";
+import { findByTestAttr, checkProps } from "../../../Utils";
 
 //Do a shallow HTML render of a dummy Headline component
 //parsing in props(header,desc) and return component and props
@@ -13,6 +13,30 @@ const setUp = (props = {}) => {
 //Headline Component Tests
 describe("Headline Component", () => {
   //Test Case 1
+  describe("Checking PropTypes", () => {
+    //AT TEST
+    it("Should not throw a warning", () => {
+      //Replicate PropTypes schema (index.js) with values
+      const expectedProps = {
+        header: "Test Header",
+        desc: "Test Desc",
+        tempArr: [
+          {
+            fName: "Test fName",
+            lName: "Test lName",
+            email: "test@email.com",
+            age: 23,
+            onlineStatus: false
+          }
+        ]
+      };
+      //call util function checkProps with (component, expectedProps)
+      const propsErr = checkProps(Headline, expectedProps);
+      expect(propsErr).toBeUndefined();
+    });
+  });
+
+  //Test Case 2
   describe("Have props", () => {
     let wrapper;
     //BEFORE TEST - create test obj to parse props to setUp
@@ -43,7 +67,7 @@ describe("Headline Component", () => {
     });
   });
 
-  //Test Case 2
+  //Test Case 3
   describe("Have NO props", () => {
     let wrapper;
     //BEFORE TEST - Don't parse any props to setUp
