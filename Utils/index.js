@@ -1,8 +1,11 @@
 import checkPropTypes from "check-prop-types";
+import { applyMiddleware, createStore } from "redux";
+import rootReducer from "./../src/reducers";
+import { middlewares } from "./../src/createStore";
+//This file contains functions usable across many tests
 
-//This is a function usable across many tests
-//function to taken the component and attribute
-//and return it as wrapper
+//This takes in the component(in text form - shallow) and attribute, find the
+//data-test tag with attr and return it as wrapper
 export const findByTestAttr = (component, attr) => {
   const wrapper = component.find(`[data-test='${attr}']`);
   return wrapper;
@@ -19,4 +22,12 @@ export const checkProps = (component, expectedProps) => {
     component.name
   );
   return propsErr;
+};
+
+//This function will create a dummy store for integration test
+export const testStore = initialState => {
+  const createStoreWithMiddleware = applyMiddleware(...middlewares)(
+    createStore
+  );
+  return createStoreWithMiddleware(rootReducer, initialState);
 };
