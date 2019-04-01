@@ -22,7 +22,7 @@ describe("Header Component", () => {
   //Test Step
   it("Should render without errors", () => {
     //This console log will output HTML of Header component
-    // console.log(component.debug());
+    console.log(component.debug());
     //Find .headerComponent class, store it in wrapper
     const wrapper = findByTestAttr(component, "headerComponent");
     //3. Check that wrapper exists on the page
