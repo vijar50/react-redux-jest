@@ -19,7 +19,7 @@ class SharedButton extends Component {
     );
   }
 }
-
+//The component expects two different properties
 SharedButton.propTypes = {
   buttonText: PropTypes.string,
   emitEvent: PropTypes.func
